@@ -401,7 +401,7 @@ const Platform = () => {
       desc:"AI-generated clinical protocols grounded in ICH E6, FDA guidance, and 1M+ real trials. Our Writer Agent synthesises disease burden data, comparator landscape, and endpoint selection into a draft ready for medical review.",
       bullets:["ICH E6(R2) & FDA compliant templates","Therapeutic area-specific endpoint libraries","Automated comparator arm selection","Version control with audit trail"] },
     { icon:"◎", title:"Site Feasibility", accent:"#7C3AED",
-      desc:"Composite country scoring across patient population density, disease burden (IHME GBD), regulatory environment, site infrastructure, and historical enrolment rates — in minutes, not weeks.",
+      desc:"Composite country scoring across study population density, disease burden (IHME GBD), regulatory environment, site infrastructure, and historical enrolment rates — in minutes, not weeks.",
       bullets:["15+ country-level scoring dimensions","Powered by WHO, World Bank, GLOBOCAN","Interactive heatmap visualisation","CRO-ready feasibility report export"] },
     { icon:"⬟", title:"Explainable AI", accent:"#00FF94",
       desc:"Every recommendation is fully traceable from raw data source to final output. No black boxes. No hallucinations. Every protocol section cites its evidence chain — a first in clinical AI.",
@@ -513,7 +513,7 @@ const Solutions = () => {
         "Clinical Study Reports (CSR)",
         "Investigator Brochures (IB)",
         "IND / CTA / eCTD documents",
-        "Patient narratives & case summaries",
+        "Clinical narratives & case summaries",
         "Protocol amendment impact assessments",
       ],
       usedBy:"Medical Writers · Regulatory Affairs · CROs",
@@ -925,13 +925,13 @@ const FAQ = () => {
 
   const faqs = [
     { q:"How does ProtocolIQ handle data privacy and HIPAA compliance?",
-      a:"ProtocolIQ processes only publicly available datasets (ClinicalTrials.gov, IHME, OpenFDA, PubMed, WHO). No patient-level data is ingested or processed. All generated protocol content lives within your secure environment. We are SOC 2 Type II compliant and undergo annual penetration testing." },
+      a:"ProtocolIQ processes only publicly available datasets (ClinicalTrials.gov, IHME, OpenFDA, PubMed, WHO). No individual-level clinical data is ingested or processed. All generated protocol content lives within your secure environment. We are SOC 2 Type II compliant and undergo annual penetration testing." },
     { q:"How accurate is the AI-generated protocol compared to manually authored versions?",
       a:"Across our beta cohort, protocol drafts showed 60–70% structural similarity to the finalized version — benchmarked against expert medical writers. The AI handles the scaffolding, evidence synthesis, and regulatory boilerplate; your clinical team applies domain judgment for the remaining nuances." },
     { q:"Which therapeutic areas are supported?",
       a:"ProtocolIQ currently covers Oncology, Cardiovascular, CNS/Neurology, Infectious Disease, Rare Diseases, and Metabolic disorders. Additional TAs are added quarterly based on customer demand. Custom therapeutic area models are available on Enterprise plans." },
     { q:"How does the feasibility scoring work?",
-      a:"We score each country across 15+ dimensions: patient population (IHME GBD), disease prevalence (GLOBOCAN/WHO), regulatory approval timelines, site infrastructure quality, investigator experience, and historical enrolment rates. Scores are aggregated into a composite rank with full dimension-level transparency." },
+      a:"We score each country across 15+ dimensions: population data (IHME GBD), disease prevalence (GLOBOCAN/WHO), regulatory approval timelines, site infrastructure quality, investigator experience, and historical enrolment rates. Scores are aggregated into a composite rank with full dimension-level transparency." },
     { q:"Can ProtocolIQ integrate with our existing CTMS or eTMF?",
       a:"Yes — ProtocolIQ provides REST API endpoints and pre-built connectors for major CTMS platforms. Custom integrations are available on Professional and Enterprise plans. Our FastAPI backend is designed for easy integration into existing clinical data workflows." },
   ];

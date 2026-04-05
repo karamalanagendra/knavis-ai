@@ -59,7 +59,7 @@ const Label = ({ children, color = "var(--accent)" }) => (
 );
 
 const SectionNum = ({ n }) => (
-  <div style={{ fontFamily:"var(--mono)", fontSize:"72px", fontWeight:900,
+  <div style={{ fontFamily:"var(--mono)", fontSize:"44px", fontWeight:900,
     color:"rgba(255,255,255,0.04)", lineHeight:1, marginBottom:"-20px",
     letterSpacing:"-0.06em", userSelect:"none" }}>0{n}</div>
 );
@@ -155,12 +155,12 @@ const PageHero = () => {
           <Label>The Platform</Label>
         </motion.div>
         <motion.h1 {...s(1)} style={{ fontFamily:"var(--head)", fontWeight:800,
-          fontSize:"clamp(40px,7vw,84px)", lineHeight:1.0, letterSpacing:"-0.04em",
+          fontSize:"clamp(22px,3vw,36px)", lineHeight:1.0, letterSpacing:"-0.04em",
           marginBottom:"8px" }}>
           Meet <span className="shimmer">ProtocolIQ</span>
         </motion.h1>
         <motion.p {...s(2)} style={{ fontFamily:"var(--serif)", fontStyle:"italic",
-          fontSize:"clamp(20px,3vw,32px)", color:"var(--muted2)", marginBottom:"24px" }}>
+          fontSize:"clamp(14px,1.8vw,20px)", color:"var(--muted2)", marginBottom:"24px" }}>
           The first AI-native clinical trial platform
         </motion.p>
         <motion.p {...s(3)} style={{ fontSize:"17px", color:"var(--muted2)", lineHeight:1.8,
@@ -208,7 +208,7 @@ const ArchDiagram = () => {
         <motion.div initial={{opacity:0,y:16}} animate={inView?{opacity:1,y:0}:{}}
           transition={{duration:0.6}} style={{ textAlign:"center", marginBottom:"56px" }}>
           <Label>Architecture</Label>
-          <h2 style={{ fontSize:"clamp(28px,4vw,48px)", fontWeight:800,
+          <h2 style={{ fontSize:"clamp(18px,2.2vw,28px)", fontWeight:800,
             letterSpacing:"-0.03em" }}>
             Built for{" "}
             <span style={{ fontFamily:"var(--serif)", fontStyle:"italic",
@@ -320,7 +320,7 @@ const Agents = () => {
         <motion.div initial={{opacity:0,y:16}} animate={inView?{opacity:1,y:0}:{}}
           transition={{duration:0.6}} style={{ textAlign:"center", marginBottom:"64px" }}>
           <Label>AI Agent Architecture</Label>
-          <h2 style={{ fontSize:"clamp(28px,4vw,52px)", fontWeight:800, letterSpacing:"-0.03em" }}>
+          <h2 style={{ fontSize:"clamp(18px,2.2vw,28px)", fontWeight:800, letterSpacing:"-0.03em" }}>
             Five specialised agents.<br/>
             <span style={{ fontFamily:"var(--serif)", fontStyle:"italic",
               fontWeight:400, color:"var(--muted2)" }}>One orchestrated intelligence.</span>
@@ -512,7 +512,7 @@ const DataSources = () => {
           <Label>Data Sources</Label>
           <div style={{ display:"flex", justifyContent:"space-between",
             alignItems:"flex-end", flexWrap:"wrap", gap:"20px" }}>
-            <h2 style={{ fontSize:"clamp(28px,4vw,52px)", fontWeight:800,
+            <h2 style={{ fontSize:"clamp(18px,2.2vw,28px)", fontWeight:800,
               letterSpacing:"-0.03em", maxWidth:"500px" }}>
               Grounded in{" "}
               <span className="shimmer">real-world</span> data
@@ -634,7 +634,7 @@ const Workflow = () => {
           transition={{duration:0.6}} style={{ textAlign:"center", marginBottom:"72px" }}>
           <SectionNum n={4} />
           <Label>Protocol Workflow</Label>
-          <h2 style={{ fontSize:"clamp(28px,4vw,52px)", fontWeight:800, letterSpacing:"-0.03em" }}>
+          <h2 style={{ fontSize:"clamp(18px,2.2vw,28px)", fontWeight:800, letterSpacing:"-0.03em" }}>
             From brief to protocol<br/>
             <span className="shimmer">in under 10 minutes</span>
           </h2>
@@ -732,11 +732,11 @@ const Explainability = () => {
   const [step, setStep] = useState(0);
 
   const chain = [
-    { label:"Protocol Statement", text:`"Primary endpoint: OS at 24 months in patients with Stage III NSCLC receiving pembrolizumab + chemotherapy vs. chemotherapy alone"`, color:"#fff", icon:"📄" },
+    { label:"Protocol Statement", text:`"Primary endpoint: OS at 24 months in subjects with Stage III NSCLC receiving pembrolizumab + chemotherapy vs. chemotherapy alone"`, color:"#fff", icon:"📄" },
     { label:"Writer Agent Rationale", text:"Selected OS as primary endpoint based on FDA oncology guidance (FDA-2018-D-3460) and precedent from 47 similar NSCLC trials in ClinicalTrials.gov.", color:"var(--accent)", icon:"✦" },
     { label:"Retrieval Source 1", text:"ClinicalTrials.gov NCT02578680 (KEYNOTE-189): OS primary endpoint confirmed for pembrolizumab + chemo in NSCLC. Median OS 22.0 vs 10.7 months.", color:"var(--violet)", icon:"◎" },
     { label:"Retrieval Source 2", text:"PubMed PMID:30280652 — Gadgeel et al. 2019. Pembrolizumab + carboplatin/pemetrexed in Stage IV NSCLC. HR 0.56 (95% CI 0.45–0.70).", color:"var(--green)", icon:"⬡" },
-    { label:"Review Agent Flag", text:"No issues. OS endpoint aligns with FDA 2022 oncology guidance. Sample size for 80% power at HR 0.75 = 342 patients per arm.", color:"var(--orange)", icon:"△" },
+    { label:"Review Agent Flag", text:"No issues. OS endpoint aligns with FDA 2022 oncology guidance. Sample size for 80% power at HR 0.75 = 342 subjects per arm.", color:"var(--orange)", icon:"△" },
   ];
 
   return (
@@ -747,7 +747,7 @@ const Explainability = () => {
             transition={{duration:0.8, ease:[0.22,1,0.36,1]}}>
             <SectionNum n={5} />
             <Label color="var(--green)">Explainable AI</Label>
-            <h2 style={{ fontSize:"clamp(28px,4vw,48px)", fontWeight:800,
+            <h2 style={{ fontSize:"clamp(18px,2.2vw,28px)", fontWeight:800,
               letterSpacing:"-0.03em", marginBottom:"20px" }}>
               Nobody can explain<br/>
               <span style={{ fontFamily:"var(--serif)", fontStyle:"italic",
@@ -854,7 +854,7 @@ const FeasibilitySection = () => {
     { name:"South Korea", score:85, pop:"Medium", reg:"MFDS", accent:"#00FF94" },
   ];
 
-  const dims = ["Patient Population","Disease Burden","Regulatory Speed","Site Infrastructure","Enrolment History","Cost Efficiency"];
+  const dims = ["Study Population","Disease Burden","Regulatory Speed","Site Infrastructure","Enrolment History","Cost Efficiency"];
 
   return (
     <section id="feasibility" ref={ref} style={{ padding:"120px 24px",
@@ -866,7 +866,7 @@ const FeasibilitySection = () => {
           transition={{duration:0.6}} style={{ textAlign:"center", marginBottom:"64px" }}>
           <SectionNum n={2} />
           <Label>Site Feasibility Engine</Label>
-          <h2 style={{ fontSize:"clamp(28px,4vw,52px)", fontWeight:800, letterSpacing:"-0.03em" }}>
+          <h2 style={{ fontSize:"clamp(18px,2.2vw,28px)", fontWeight:800, letterSpacing:"-0.03em" }}>
             Country scoring in{" "}
             <span className="shimmer">minutes, not weeks</span>
           </h2>
@@ -974,7 +974,7 @@ const FinalCTA = () => {
         <motion.div initial={{opacity:0,y:20}} animate={inView?{opacity:1,y:0}:{}}
           transition={{duration:0.7}}>
           <Label>Get Early Access</Label>
-          <h2 style={{ fontSize:"clamp(30px,5vw,56px)", fontWeight:800,
+          <h2 style={{ fontSize:"clamp(20px,2.5vw,32px)", fontWeight:800,
             letterSpacing:"-0.035em", lineHeight:1.08, marginBottom:"20px" }}>
             Ready to run your trials<br/>
             <span className="shimmer">50% faster?</span>
