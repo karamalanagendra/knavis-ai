@@ -61,7 +61,7 @@ const Navbar = () => {
         transition:"all 0.3s" }}>
         <div style={{ maxWidth:"1200px", margin:"0 auto", display:"flex", alignItems:"center", justifyContent:"space-between", height:"64px" }}>
           <a href="/" style={{ display:"flex", alignItems:"center", textDecoration:"none" }}>
-            <img src="/knavis-logo.png" alt="KNavis Systems" style={{ height:"60px", width:"auto", display:"block", borderRadius:"10px", mixBlendMode:"lighten", filter:"brightness(1.05) contrast(1.05)" }}/>
+            <img src="/knavis-logo.png" alt="KNavis Systems" style={{ height:"72px", width:"auto", display:"block", borderRadius:"10px", mixBlendMode:"lighten", filter:"brightness(1.08) contrast(1.05) saturate(1.1)" }}/>
           </a>
           <div className="desktop-nav" style={{ display:"flex", gap:"2px" }}>
             {links.map(l => (

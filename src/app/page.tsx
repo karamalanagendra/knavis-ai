@@ -133,7 +133,7 @@ const Navbar = () => {
           borderBottom: scrolled||menuOpen ? "1px solid var(--border)" : "1px solid transparent",
           transition:"all 0.3s" }}>
         <div style={{ maxWidth:"1200px", margin:"0 auto", display:"flex",
-          alignItems:"center", justifyContent:"space-between", height:"72px" }}>
+          alignItems:"center", justifyContent:"space-between", height:"80px" }}>
 
           {/* Logo */}
           <a href="/" style={{ display:"flex", alignItems:"center", textDecoration:"none" }}>
@@ -141,12 +141,12 @@ const Navbar = () => {
               src="/knavis-logo.png"
               alt="KNavis Systems"
               style={{
-                height:"60px",
+                height:"72px",
                 width:"auto",
                 display:"block",
                 borderRadius:"10px",
                 mixBlendMode:"lighten",
-                filter:"brightness(1.05) contrast(1.05)",
+                filter:"brightness(1.08) contrast(1.05) saturate(1.1)",
               }}
             />
           </a>
@@ -173,11 +173,13 @@ const Navbar = () => {
             </a>
           </div>
 
-          {/* Mobile hamburger */}
+          {/* Mobile hamburger — bigger */}
           <button onClick={() => setMenuOpen(o => !o)}
             className="mobile-menu-btn"
-            style={{ display:"none", background:"transparent", border:"none",
-              cursor:"pointer", padding:"8px", color:"#fff", fontSize:"20px", lineHeight:1 }}>
+            style={{ display:"none", background:"rgba(255,255,255,0.06)",
+              border:"1px solid rgba(255,255,255,0.12)", borderRadius:"8px",
+              cursor:"pointer", padding:"10px 14px", color:"#fff",
+              fontSize:"26px", lineHeight:1 }}>
             {menuOpen ? "✕" : "☰"}
           </button>
         </div>
@@ -188,23 +190,23 @@ const Navbar = () => {
         {menuOpen && (
           <motion.div initial={{opacity:0,y:-10}} animate={{opacity:1,y:0}}
             exit={{opacity:0,y:-10}} transition={{duration:0.25}}
-            style={{ position:"fixed", top:"64px", left:0, right:0, zIndex:99,
+            style={{ position:"fixed", top:"80px", left:0, right:0, zIndex:99,
               background:"rgba(6,6,15,0.98)", backdropFilter:"blur(20px)",
               borderBottom:"1px solid var(--border)", padding:"16px 20px 24px" }}>
             {links.map(l => (
               <a key={l.label} href={l.href}
                 onClick={() => setMenuOpen(false)}
-                style={{ display:"block", padding:"13px 8px", color:"var(--muted2)",
-                  fontSize:"16px", fontWeight:500, textDecoration:"none",
+                style={{ display:"block", padding:"15px 12px", color:"var(--muted2)",
+                  fontSize:"17px", fontWeight:500, textDecoration:"none",
                   borderBottom:"1px solid var(--border)" }}>
                 {l.label}
               </a>
             ))}
             <div style={{ marginTop:"16px" }}>
               <a href="#demo" onClick={() => setMenuOpen(false)}
-                style={{ display:"block", textAlign:"center", padding:"13px",
+                style={{ display:"block", textAlign:"center", padding:"14px",
                   background:"rgba(0,255,148,0.08)", border:"1px solid rgba(0,255,148,0.3)",
-                  borderRadius:"8px", color:"#fff", fontSize:"14px",
+                  borderRadius:"8px", color:"#fff", fontSize:"15px",
                   fontWeight:600, textDecoration:"none" }}>
                 Book a Demo →
               </a>
