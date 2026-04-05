@@ -116,7 +116,15 @@ const Navbar = () => {
     window.addEventListener("scroll", h);
     return () => window.removeEventListener("scroll", h);
   }, []);
-  const links = ["Platform","Feasibility","About","Blog","Services","FAQ"];
+  const links = [
+    { label:"Home",              href:"#home"       },
+    { label:"Platform",          href:"#platform"   },
+    { label:"Flagship Solutions",href:"#flagship"   },
+    { label:"Services",          href:"#services"   },
+    { label:"Multi-Agent",       href:"#multiagent" },
+    { label:"Why KNavis",        href:"#why"        },
+    { label:"About",             href:"/about"      },
+  ];
   return (
     <>
       <motion.nav initial={{y:-60,opacity:0}} animate={{y:0,opacity:1}}
@@ -149,23 +157,21 @@ const Navbar = () => {
           {/* Desktop links */}
           <div className="desktop-nav" style={{ display:"flex", gap:"2px" }}>
             {links.map(l => (
-              <a key={l} href={`#${l.toLowerCase()}`} style={{ padding:"6px 12px",
-                color:"var(--muted)", fontSize:"13px", fontWeight:500, textDecoration:"none",
-                borderRadius:"6px", transition:"all 0.2s" }}
+              <a key={l.label} href={l.href} style={{ padding:"5px 9px",
+                color:"var(--muted)", fontSize:"12px", fontWeight:500, textDecoration:"none",
+                borderRadius:"6px", transition:"all 0.2s", whiteSpace:"nowrap" }}
                 onMouseEnter={e=>{(e.target as HTMLElement).style.color="#fff";(e.target as HTMLElement).style.background="rgba(255,255,255,0.05)"}}
                 onMouseLeave={e=>{(e.target as HTMLElement).style.color="var(--muted)";(e.target as HTMLElement).style.background="transparent"}}>
-                {l}
+                {l.label}
               </a>
             ))}
           </div>
 
           {/* Desktop CTAs */}
           <div className="desktop-nav" style={{ display:"flex", gap:"8px", alignItems:"center" }}>
-            <a href="#" style={{ padding:"6px 14px", color:"var(--muted)", fontSize:"13px",
-              fontWeight:500, textDecoration:"none" }}>Sign in</a>
-            <a href="#demo" style={{ padding:"8px 18px", background:"rgba(0,255,148,0.08)",
+            <a href="#demo" style={{ padding:"8px 16px", background:"rgba(0,255,148,0.08)",
               border:"1px solid rgba(0,255,148,0.3)", borderRadius:"8px",
-              color:"#fff", fontSize:"12px", fontWeight:600, textDecoration:"none" }}>
+              color:"#fff", fontSize:"12px", fontWeight:600, textDecoration:"none", whiteSpace:"nowrap" }}>
               Book a Demo →
             </a>
           </div>
@@ -174,8 +180,7 @@ const Navbar = () => {
           <button onClick={() => setMenuOpen(o => !o)}
             className="mobile-menu-btn"
             style={{ display:"none", background:"transparent", border:"none",
-              cursor:"pointer", padding:"8px", color:"#fff", fontSize:"20px",
-              lineHeight:1 }}>
+              cursor:"pointer", padding:"8px", color:"#fff", fontSize:"20px", lineHeight:1 }}>
             {menuOpen ? "✕" : "☰"}
           </button>
         </div>
@@ -185,6 +190,31 @@ const Navbar = () => {
       <AnimatePresence>
         {menuOpen && (
           <motion.div initial={{opacity:0,y:-10}} animate={{opacity:1,y:0}}
+            exit={{opacity:0,y:-10}} transition={{duration:0.25}}
+            style={{ position:"fixed", top:"64px", left:0, right:0, zIndex:99,
+              background:"rgba(6,6,15,0.98)", backdropFilter:"blur(20px)",
+              borderBottom:"1px solid var(--border)", padding:"16px 20px 24px" }}>
+            {links.map(l => (
+              <a key={l.label} href={l.href}
+                onClick={() => setMenuOpen(false)}
+                style={{ display:"block", padding:"13px 8px", color:"var(--muted2)",
+                  fontSize:"16px", fontWeight:500, textDecoration:"none",
+                  borderBottom:"1px solid var(--border)" }}>
+                {l.label}
+              </a>
+            ))}
+            <div style={{ marginTop:"16px" }}>
+              <a href="#demo" onClick={() => setMenuOpen(false)}
+                style={{ display:"block", textAlign:"center", padding:"13px",
+                  background:"rgba(0,255,148,0.08)", border:"1px solid rgba(0,255,148,0.3)",
+                  borderRadius:"8px", color:"#fff", fontSize:"14px",
+                  fontWeight:600, textDecoration:"none" }}>
+                Book a Demo →
+              </a>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
             exit={{opacity:0,y:-10}} transition={{duration:0.25}}
             style={{ position:"fixed", top:"64px", left:0, right:0, zIndex:99,
               background:"rgba(6,6,15,0.98)", backdropFilter:"blur(20px)",
@@ -245,7 +275,7 @@ const Hero = () => {
     transition:{delay:0.15+i*0.12, duration:0.8, ease:[0.22,1,0.36,1]} });
 
   return (
-    <section style={{ position:"relative", minHeight:"100vh", display:"flex",
+    <section id="home" style={{ position:"relative", minHeight:"100vh", display:"flex",
       flexDirection:"column", alignItems:"center", justifyContent:"center",
       padding:"120px 24px 100px", overflow:"hidden" }}>
       {/* 3D DNA particle background */}
@@ -426,9 +456,9 @@ const Platform = () => {
           </motion.div>
         </div>
 
-        <div style={{ display:"grid", gridTemplateColumns:"240px 1fr", gap:"24px", alignItems:"start" }}>
+        <div className="platform-grid" style={{ display:"grid", gridTemplateColumns:"240px 1fr", gap:"24px", alignItems:"start" }}>
           {/* Tab list */}
-          <div style={{ display:"flex", flexDirection:"column", gap:"6px" }}>
+          <div className="platform-tabs" style={{ display:"flex", flexDirection:"column", gap:"6px" }}>
             {modules.map((m,i) => (
               <motion.button key={m.title}
                 initial={{opacity:0,x:-20}} animate={inView?{opacity:1,x:0}:{}}
@@ -560,7 +590,7 @@ const Solutions = () => {
   const sol = flagship[active];
 
   return (
-    <section id="solutions" ref={ref} style={{ padding:"100px 24px", background:"var(--bg2)", position:"relative" }}>
+    <section id="flagship" ref={ref} style={{ padding:"100px 24px", background:"var(--bg2)", position:"relative" }}>
       <div style={{ position:"absolute", top:0, left:0, right:0, height:"1px",
         background:"linear-gradient(90deg,transparent,rgba(0,255,148,0.25),transparent)" }}/>
       <div style={{ maxWidth:"1200px", margin:"0 auto" }}>
@@ -1098,11 +1128,7 @@ const WhyKnavis = () => {
   ];
 
   return (
-    <section ref={ref} style={{ padding:"100px 24px", position:"relative", overflow:"hidden" }}>
-      <div style={{ position:"absolute", right:"-40px", top:"50%", transform:"translateY(-50%)",
-        fontFamily:"var(--mono)", fontSize:"260px", fontWeight:900,
-        color:"rgba(0,255,148,0.02)", lineHeight:1, userSelect:"none",
-        letterSpacing:"-0.08em", pointerEvents:"none" }}>WHY</div>
+    <section id="why" ref={ref} style={{ padding:"100px 24px", position:"relative", overflow:"hidden" }}>
 
       <div style={{ maxWidth:"1200px", margin:"0 auto", position:"relative", zIndex:1 }}>
         <motion.div initial={{opacity:0,y:16}} animate={inView?{opacity:1,y:0}:{}} transition={{duration:0.6}} style={{ marginBottom:"56px" }}>
@@ -1142,7 +1168,7 @@ const WhyKnavis = () => {
           transition={{delay:0.5, duration:0.6}}
           style={{ marginTop:"32px", background:"var(--surface)", border:"1px solid rgba(0,255,148,0.15)",
             borderRadius:"16px", overflow:"hidden" }}>
-          <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr" }}>
+          <div className="comparison-grid" style={{ display:"grid", gridTemplateColumns:"1fr 1fr" }}>
             <div style={{ padding:"28px 32px", borderRight:"1px solid var(--border)" }}>
               <div style={{ fontFamily:"var(--mono)", fontSize:"11px", color:"var(--muted)",
                 letterSpacing:"0.1em", textTransform:"uppercase", marginBottom:"16px" }}>❌ Generic Clinical AI</div>
@@ -1202,7 +1228,7 @@ const MultiAgent = () => {
   ];
 
   return (
-    <section ref={ref} style={{ padding:"100px 24px", background:"var(--bg2)", position:"relative" }}>
+    <section id="multiagent" ref={ref} style={{ padding:"100px 24px", background:"var(--bg2)", position:"relative" }}>
       <div style={{ position:"absolute", top:0, left:0, right:0, height:"1px",
         background:"linear-gradient(90deg,transparent,rgba(0,255,148,0.2),transparent)" }}/>
 
@@ -1221,10 +1247,12 @@ const MultiAgent = () => {
         {/* Pipeline */}
         <motion.div initial={{opacity:0,y:16}} animate={inView?{opacity:1,y:0}:{}}
           transition={{delay:0.1, duration:0.6}}
+          className="pipeline-scroll"
           style={{ display:"flex", alignItems:"center", justifyContent:"center",
             gap:"6px", flexWrap:"wrap", marginBottom:"40px",
             padding:"20px 24px", background:"var(--surface)",
-            border:"1px solid var(--border)", borderRadius:"14px" }}>
+            border:"1px solid var(--border)", borderRadius:"14px",
+            overflowX:"auto" }}>
           {pipeline.map((p, i) => (
             <div key={p.step} style={{ display:"flex", alignItems:"center", gap:"6px" }}>
               <div style={{ display:"flex", flexDirection:"column", alignItems:"center", gap:"4px" }}>
@@ -1242,8 +1270,8 @@ const MultiAgent = () => {
         </motion.div>
 
         {/* Agent selector + detail */}
-        <div style={{ display:"grid", gridTemplateColumns:"200px 1fr", gap:"16px" }}>
-          <div style={{ display:"flex", flexDirection:"column", gap:"8px" }}>
+        <div className="multiagent-grid" style={{ display:"grid", gridTemplateColumns:"200px 1fr", gap:"16px" }}>
+          <div className="agent-list" style={{ display:"flex", flexDirection:"column", gap:"8px" }}>
             {agents.map((a, i) => (
               <motion.button key={a.id}
                 initial={{opacity:0,x:-16}} animate={inView?{opacity:1,x:0}:{}}
@@ -1302,6 +1330,7 @@ const MultiAgent = () => {
         {/* Stat strip */}
         <motion.div initial={{opacity:0,y:16}} animate={inView?{opacity:1,y:0}:{}}
           transition={{delay:0.4, duration:0.6}}
+          className="stat-strip-4"
           style={{ display:"grid", gridTemplateColumns:"repeat(4,1fr)", marginTop:"24px",
             background:"var(--surface)", border:"1px solid var(--border)",
             borderRadius:"14px", overflow:"hidden" }}>
@@ -1552,9 +1581,9 @@ const Services = () => {
             <div style={{ position:"absolute", top:-60, right:-60, width:"250px", height:"250px",
               background:`radial-gradient(circle,${svc.accent}0A,transparent 70%)`, pointerEvents:"none" }}/>
 
-            <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:"0" }}>
+            <div className="services-card-grid" style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:"0" }}>
               {/* Left */}
-              <div style={{ padding:"40px 36px", borderRight:"1px solid var(--border)" }}>
+              <div style={{ padding:"28px 24px", borderRight:"1px solid var(--border)" }}>
                 <div style={{ display:"flex", alignItems:"center", gap:"12px", marginBottom:"18px" }}>
                   <div style={{ width:"48px", height:"48px", borderRadius:"12px",
                     background:`${svc.accent}18`, border:`1px solid ${svc.accent}30`,
@@ -1600,7 +1629,7 @@ const Services = () => {
               </div>
 
               {/* Right */}
-              <div style={{ padding:"40px 36px" }}>
+              <div style={{ padding:"28px 24px" }}>
                 <div style={{ marginBottom:"28px" }}>
                   <div style={{ fontSize:"11px", color:"var(--muted)", fontFamily:"var(--mono)",
                     letterSpacing:"0.1em", textTransform:"uppercase", marginBottom:"14px" }}>
@@ -1668,19 +1697,19 @@ export default function ProtocolIQWebsite() {
       <GlobalStyles />
       <Navbar />
       <main>
-        <Hero />
+        <Hero />          {/* 1. Home */}
         <DataTicker />
-        <Platform />
+        <Platform />      {/* 2. Platform */}
         <Divider />
-        <Solutions />
+        <Solutions />     {/* 3. Flagship Solutions */}
+        <Divider />
+        <Services />      {/* 4. Services */}
+        <Divider />
+        <MultiAgent />    {/* 5. Multi-Agent Advantage */}
+        <Divider />
+        <WhyKnavis />     {/* 6. Why KNavis */}
         <Divider />
         <ROICalc />
-        <Divider />
-        <WhyKnavis />
-        <Divider />
-        <MultiAgent />
-        <Divider />
-        <Services />
         <Divider />
         <FAQ />
         <BookDemo />

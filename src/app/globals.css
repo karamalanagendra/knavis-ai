@@ -174,3 +174,111 @@ a[href="/demo"], a[href="#demo"] {
     grid-template-columns: 1fr 1fr !important;
   }
 }
+
+/* ── MOBILE LAYOUT FIXES FOR KEY SECTIONS ───────────────────────────── */
+@media (max-width: 768px) {
+
+  /* Platform tabs — stack vertically */
+  .platform-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+  .platform-tabs {
+    flex-direction: row !important;
+    overflow-x: auto !important;
+    gap: 6px !important;
+    padding-bottom: 4px !important;
+  }
+  .platform-tabs button {
+    flex-shrink: 0 !important;
+    padding: 8px 14px !important;
+    font-size: 12px !important;
+    border-radius: 8px !important;
+    white-space: nowrap !important;
+  }
+
+  /* Flagship Solutions — stack selector and detail */
+  .flagship-selector {
+    flex-direction: row !important;
+    overflow-x: auto !important;
+    gap: 8px !important;
+    padding-bottom: 4px !important;
+    justify-content: flex-start !important;
+  }
+  .flagship-selector button {
+    flex-shrink: 0 !important;
+  }
+  .flagship-card-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .flagship-stats {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 8px !important;
+  }
+
+  /* MultiAgent — stack agent list + detail vertically */
+  .multiagent-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .agent-list {
+    display: flex !important;
+    flex-direction: row !important;
+    overflow-x: auto !important;
+    gap: 8px !important;
+    padding-bottom: 4px !important;
+  }
+  .agent-list button {
+    flex-shrink: 0 !important;
+    min-width: 100px !important;
+    border-left: none !important;
+    border-bottom: 2px solid transparent !important;
+    border-radius: 8px !important;
+  }
+  .pipeline-scroll {
+    overflow-x: auto !important;
+    padding-bottom: 8px !important;
+    justify-content: flex-start !important;
+  }
+
+  /* Services — stack card grid */
+  .services-card-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Why KNavis comparison table */
+  .comparison-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .comparison-grid > div:first-child {
+    border-right: none !important;
+    border-bottom: 1px solid var(--border) !important;
+  }
+
+  /* Stat strip 4-col → 2×2 */
+  .stat-strip-4 {
+    grid-template-columns: 1fr 1fr !important;
+  }
+  .stat-strip-4 > div {
+    border-right: none !important;
+    border-bottom: 1px solid var(--border) !important;
+  }
+
+  /* Reduce all section padding on mobile */
+  section {
+    padding-top: 60px !important;
+    padding-bottom: 60px !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  /* Hero text center on mobile */
+  .hero-content {
+    align-items: center !important;
+    text-align: center !important;
+  }
+
+  /* Cards inside auto-fill grids — full width */
+  .cards-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
