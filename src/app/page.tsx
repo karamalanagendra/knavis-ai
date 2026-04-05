@@ -110,72 +110,114 @@ const GridBg = ({ intense = false }) => (
 // ─── NAVBAR ───────────────────────────────────────────────────────────────────
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   useEffect(() => {
     const h = () => setScrolled(window.scrollY > 30);
     window.addEventListener("scroll", h);
     return () => window.removeEventListener("scroll", h);
   }, []);
-  const links = ["Platform","Feasibility","About","Blog","FAQ"];
+  const links = ["Platform","Feasibility","About","Blog","Services","FAQ"];
   return (
-    <motion.nav initial={{y:-60,opacity:0}} animate={{y:0,opacity:1}}
-      transition={{duration:0.7,ease:[0.22,1,0.36,1]}}
-      style={{ position:"fixed", top:0, left:0, right:0, zIndex:100, padding:"0 32px",
-        background: scrolled ? "rgba(6,6,15,0.94)" : "transparent",
-        backdropFilter: scrolled ? "blur(20px)" : "none",
-        borderBottom: scrolled ? "1px solid var(--border)" : "1px solid transparent",
-        transition:"all 0.3s" }}>
-      <div style={{ maxWidth:"1200px", margin:"0 auto", display:"flex",
-        alignItems:"center", justifyContent:"space-between", height:"68px" }}>
-        {/* Logo */}
-        <div style={{ display:"flex", alignItems:"center", gap:"10px", cursor:"pointer" }}>
-          <div style={{ position:"relative", width:"34px", height:"34px" }}>
-            <div style={{ width:"34px", height:"34px", borderRadius:"9px",
+    <>
+      <motion.nav initial={{y:-60,opacity:0}} animate={{y:0,opacity:1}}
+        transition={{duration:0.7,ease:[0.22,1,0.36,1]}}
+        style={{ position:"fixed", top:0, left:0, right:0, zIndex:100, padding:"0 20px",
+          background: scrolled||menuOpen ? "rgba(6,6,15,0.97)" : "transparent",
+          backdropFilter: scrolled||menuOpen ? "blur(20px)" : "none",
+          borderBottom: scrolled||menuOpen ? "1px solid var(--border)" : "1px solid transparent",
+          transition:"all 0.3s" }}>
+        <div style={{ maxWidth:"1200px", margin:"0 auto", display:"flex",
+          alignItems:"center", justifyContent:"space-between", height:"64px" }}>
+
+          {/* Logo */}
+          <a href="/" style={{ display:"flex", alignItems:"center", gap:"10px", textDecoration:"none" }}>
+            <div style={{ width:"32px", height:"32px", borderRadius:"8px",
               background:"linear-gradient(135deg,#00D4FF,#7C3AED)",
-              display:"flex", alignItems:"center", justifyContent:"center" }}>
-              <span style={{ fontFamily:"var(--mono)", fontSize:"14px", fontWeight:700, color:"#fff" }}>P</span>
+              display:"flex", alignItems:"center", justifyContent:"center",
+              boxShadow:"0 0 12px rgba(0,212,255,0.2)", flexShrink:0 }}>
+              <span style={{ fontFamily:"var(--mono)", fontSize:"13px", fontWeight:700, color:"#fff" }}>P</span>
             </div>
-            <div style={{ position:"absolute", inset:0, borderRadius:"9px",
-              background:"linear-gradient(135deg,#00D4FF,#7C3AED)",
-              filter:"blur(10px)", opacity:0.35, zIndex:-1 }}/>
-          </div>
-          <div>
-            <div style={{ fontSize:"16px", fontWeight:800, letterSpacing:"-0.03em", color:"#fff" }}>
-              Protocol<span style={{ color:"var(--accent)" }}>IQ</span>
+            <div>
+              <div style={{ fontSize:"15px", fontWeight:800, letterSpacing:"-0.03em", color:"#fff" }}>
+                Protocol<span style={{ color:"var(--accent)" }}>IQ</span>
+              </div>
+              <div style={{ fontSize:"9px", color:"var(--muted)", letterSpacing:"0.12em",
+                textTransform:"uppercase", fontFamily:"var(--mono)", lineHeight:1 }}>knavis-ai.com</div>
             </div>
-            <div style={{ fontSize:"9px", color:"var(--muted)", letterSpacing:"0.15em",
-              textTransform:"uppercase", fontFamily:"var(--mono)", lineHeight:1 }}>knavis-ai.com</div>
-          </div>
-        </div>
-        {/* Links */}
-        <div style={{ display:"flex", gap:"2px" }}>
-          {links.map(l => (
-            <a key={l} href={`#${l.toLowerCase()}`} style={{ padding:"6px 14px",
-              color:"var(--muted)", fontSize:"14px", fontWeight:500, textDecoration:"none",
-              borderRadius:"6px", transition:"all 0.2s" }}
-              onMouseEnter={e=>{e.target.style.color="#fff";e.target.style.background="rgba(255,255,255,0.05)"}}
-              onMouseLeave={e=>{e.target.style.color="var(--muted)";e.target.style.background="transparent"}}>
-              {l}
-            </a>
-          ))}
-        </div>
-        {/* CTAs */}
-        <div style={{ display:"flex", gap:"10px", alignItems:"center" }}>
-          <a href="#" style={{ padding:"7px 16px", color:"var(--muted)", fontSize:"13px",
-            fontWeight:500, textDecoration:"none", transition:"color 0.2s" }}
-            onMouseEnter={e=>e.target.style.color="#fff"}
-            onMouseLeave={e=>e.target.style.color="var(--muted)"}>Sign in</a>
-          <a href="#demo" style={{ padding:"9px 22px",
-            background:"rgba(0,255,148,0.08)",
-            border:"1px solid rgba(0,255,148,0.3)", borderRadius:"8px",
-            color:"#fff", fontSize:"13px", fontWeight:600, textDecoration:"none",
-            transition:"all 0.25s" }}
-            onMouseEnter={e=>{e.currentTarget.style.boxShadow="0 0 20px rgba(0,255,148,0.2)";e.currentTarget.style.borderColor="rgba(0,255,148,0.6)";e.currentTarget.style.background="rgba(0,255,148,0.14)"}}
-            onMouseLeave={e=>{e.currentTarget.style.boxShadow="none";e.currentTarget.style.borderColor="rgba(0,255,148,0.3)";e.currentTarget.style.background="rgba(0,255,148,0.08)"}}>
-            Book a Demo →
           </a>
+
+          {/* Desktop links */}
+          <div className="desktop-nav" style={{ display:"flex", gap:"2px" }}>
+            {links.map(l => (
+              <a key={l} href={`#${l.toLowerCase()}`} style={{ padding:"6px 12px",
+                color:"var(--muted)", fontSize:"13px", fontWeight:500, textDecoration:"none",
+                borderRadius:"6px", transition:"all 0.2s" }}
+                onMouseEnter={e=>{(e.target as HTMLElement).style.color="#fff";(e.target as HTMLElement).style.background="rgba(255,255,255,0.05)"}}
+                onMouseLeave={e=>{(e.target as HTMLElement).style.color="var(--muted)";(e.target as HTMLElement).style.background="transparent"}}>
+                {l}
+              </a>
+            ))}
+          </div>
+
+          {/* Desktop CTAs */}
+          <div className="desktop-nav" style={{ display:"flex", gap:"8px", alignItems:"center" }}>
+            <a href="#" style={{ padding:"6px 14px", color:"var(--muted)", fontSize:"13px",
+              fontWeight:500, textDecoration:"none" }}>Sign in</a>
+            <a href="#demo" style={{ padding:"8px 18px", background:"rgba(0,255,148,0.08)",
+              border:"1px solid rgba(0,255,148,0.3)", borderRadius:"8px",
+              color:"#fff", fontSize:"12px", fontWeight:600, textDecoration:"none" }}>
+              Book a Demo →
+            </a>
+          </div>
+
+          {/* Mobile hamburger */}
+          <button onClick={() => setMenuOpen(o => !o)}
+            className="mobile-menu-btn"
+            style={{ display:"none", background:"transparent", border:"none",
+              cursor:"pointer", padding:"8px", color:"#fff", fontSize:"20px",
+              lineHeight:1 }}>
+            {menuOpen ? "✕" : "☰"}
+          </button>
         </div>
-      </div>
-    </motion.nav>
+      </motion.nav>
+
+      {/* Mobile dropdown menu */}
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div initial={{opacity:0,y:-10}} animate={{opacity:1,y:0}}
+            exit={{opacity:0,y:-10}} transition={{duration:0.25}}
+            style={{ position:"fixed", top:"64px", left:0, right:0, zIndex:99,
+              background:"rgba(6,6,15,0.98)", backdropFilter:"blur(20px)",
+              borderBottom:"1px solid var(--border)", padding:"16px 20px 24px" }}>
+            {links.map(l => (
+              <a key={l} href={`#${l.toLowerCase()}`}
+                onClick={() => setMenuOpen(false)}
+                style={{ display:"block", padding:"12px 8px", color:"var(--muted2)",
+                  fontSize:"16px", fontWeight:500, textDecoration:"none",
+                  borderBottom:"1px solid var(--border)" }}>
+                {l}
+              </a>
+            ))}
+            <div style={{ marginTop:"16px", display:"flex", gap:"10px" }}>
+              <a href="#demo" onClick={() => setMenuOpen(false)}
+                style={{ flex:1, textAlign:"center", padding:"12px",
+                  background:"rgba(0,255,148,0.08)", border:"1px solid rgba(0,255,148,0.3)",
+                  borderRadius:"8px", color:"#fff", fontSize:"14px",
+                  fontWeight:600, textDecoration:"none" }}>
+                Book a Demo →
+              </a>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <style>{`
+        @media (max-width: 768px) {
+          .desktop-nav { display: none !important; }
+          .mobile-menu-btn { display: block !important; }
+        }
+      `}</style>
+    </>
   );
 };
 
@@ -208,9 +250,9 @@ const Hero = () => {
       padding:"120px 24px 100px", overflow:"hidden" }}>
       {/* 3D DNA particle background */}
       <HeroBg3D />
-      {/* Dark overlay so text stays readable */}
+      {/* Overlay — light enough to see the graph */}
       <div style={{ position:"absolute", inset:0, zIndex:1,
-        background:"radial-gradient(ellipse at center, rgba(6,6,15,0.2) 0%, rgba(6,6,15,0.72) 65%)",
+        background:"radial-gradient(ellipse at center, rgba(6,6,15,0.05) 0%, rgba(6,6,15,0.5) 80%)",
         pointerEvents:"none" }}/>
       {/* Scan line */}
       <div style={{ position:"absolute", left:0, right:0, height:"1px", zIndex:2,
@@ -1407,6 +1449,218 @@ const Footer = () => {
   );
 };
 
+// ─── SERVICES (CRO) ──────────────────────────────────────────────────────────
+const Services = () => {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once:true, margin:"-80px" });
+  const [active, setActive] = useState(0);
+
+  const services = [
+    {
+      icon:"⬡", accent:"#00FF94", tag:"CDISC Programming",
+      title:"SDTM & ADaM Programming",
+      headline:"Submission-ready datasets in 2 weeks",
+      desc:"Senior-led SDTM and ADaM programming augmented by AI execution — delivering complex CDISC packages at automation speed without sacrificing regulatory integrity. Raw data to submission-ready package in ~2 weeks.",
+      deliverables:["SDTM (Study Data Tabulation Model)","ADaM (Analysis Data Model)","Define.xml with full metadata","Tables, Listings & Figures (TFLs)"],
+      model:["2 Senior Statistical Programming SMEs","AI-driven SAS/R code generation","Real-time syntax validation","Final regulatory review & QC"],
+      stat1:{ val:"~2 wks", label:"Raw data to submission" },
+      stat2:{ val:"Zero", label:"Junior bandwidth dependency" },
+      usedBy:"Sponsors · CROs · Biotech",
+    },
+    {
+      icon:"✦", accent:"#00D4FF", tag:"AI Execution",
+      title:"AI-Augmented Programming",
+      headline:"Expert oversight. Machine-speed delivery.",
+      desc:"Our hybrid execution engine combines senior clinical programming expertise with a purpose-built AI layer — replacing fragmented, multi-tier teams with a lean, high-performance unit capable of Oncology, Rare Disease, ISS/ISE and legacy data conversion.",
+      deliverables:["Oncology & Rare Disease programming","Legacy data conversion & remediation","ISS / ISE integration packages","Integrated Summary datasets"],
+      model:["Automated SDTM mapping workflows","AI-accelerated SAS/R derivations","Human-validated output QC","Audit-ready, inspection-proof outputs"],
+      stat1:{ val:"10×", label:"Faster than traditional CRO" },
+      stat2:{ val:"100%", label:"Regulatory-aligned outputs" },
+      usedBy:"Pharma · Biotech · Virtual CROs",
+    },
+    {
+      icon:"△", accent:"#7C3AED", tag:"Regulatory",
+      title:"Regulatory Submission Support",
+      headline:"FDA · EMA · PMDA — first-time acceptance",
+      desc:"End-to-end regulatory programming support — from Reviewer's Guide authoring and Pinnacle 21 compliance validation to eCTD packaging and global submission coordination. Outputs structured for immediate acceptance by global regulators.",
+      deliverables:["Reviewer's Guide (RG) authoring","Pinnacle 21 compliance checks","eCTD sequence preparation","Study Data Reviewer's Guide (SDRG)"],
+      model:["CDISC Compliance Checks","FDA/EMA/PMDA format validation","Global submission coordination","Post-submission query response"],
+      stat1:{ val:"0", label:"PMDA revision cycles (case study)" },
+      stat2:{ val:"Global", label:"FDA · EMA · PMDA · CDSCO" },
+      usedBy:"Regulatory Affairs · Medical Directors",
+    },
+  ];
+
+  const svc = services[active];
+
+  return (
+    <section id="services" ref={ref} style={{ padding:"100px 24px", position:"relative" }}>
+      <div style={{ maxWidth:"1200px", margin:"0 auto" }}>
+
+        {/* Header */}
+        <motion.div initial={{opacity:0,y:16}} animate={inView?{opacity:1,y:0}:{}}
+          transition={{duration:0.6}} style={{ marginBottom:"48px" }}>
+          <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:"32px", alignItems:"end" }}>
+            <div>
+              <div style={{ fontFamily:"var(--mono)", fontSize:"11px", color:"var(--green)",
+                letterSpacing:"0.15em", textTransform:"uppercase", marginBottom:"12px" }}>◆ CRO Services</div>
+              <h2 style={{ fontSize:"clamp(20px,3.2vw,38px)", fontWeight:800,
+                letterSpacing:"-0.03em", lineHeight:1.1 }}>
+                Expert-led.<br/>
+                <span style={{ fontFamily:"'DM Serif Display',serif", fontStyle:"italic",
+                  fontWeight:400, color:"var(--muted2)" }}>AI-augmented.</span>
+              </h2>
+            </div>
+            <p style={{ fontSize:"14px", color:"var(--muted2)", lineHeight:1.75 }}>
+              We redefine the CRO model — replacing fragmented teams with a lean,
+              senior-led unit backed by AI execution. Submission-ready clinical
+              programming at unprecedented speed.
+            </p>
+          </div>
+        </motion.div>
+
+        {/* Service tabs */}
+        <motion.div initial={{opacity:0,y:12}} animate={inView?{opacity:1,y:0}:{}}
+          transition={{delay:0.1,duration:0.5}}
+          style={{ display:"flex", gap:"10px", marginBottom:"32px", flexWrap:"wrap" }}>
+          {services.map((s,i) => (
+            <button key={s.tag} onClick={() => setActive(i)}
+              style={{ display:"flex", alignItems:"center", gap:"10px",
+                padding:"11px 22px", borderRadius:"100px", border:"none",
+                cursor:"pointer", fontFamily:"'Outfit',sans-serif", transition:"all 0.25s",
+                background: active===i
+                  ? `linear-gradient(135deg,${s.accent}25,${s.accent}10)`
+                  : "var(--surface)",
+                boxShadow: active===i ? `0 0 0 1px ${s.accent}50` : `0 0 0 1px var(--border)`,
+              }}>
+              <span style={{ color: active===i ? s.accent : "var(--muted)", fontSize:"14px" }}>{s.icon}</span>
+              <span style={{ fontSize:"13px", fontWeight:700,
+                color: active===i ? "#fff" : "var(--muted)" }}>{s.tag}</span>
+            </button>
+          ))}
+        </motion.div>
+
+        {/* Active service card */}
+        <AnimatePresence mode="wait">
+          <motion.div key={svc.title}
+            initial={{opacity:0,y:16}} animate={{opacity:1,y:0}} exit={{opacity:0,y:-16}}
+            transition={{duration:0.4,ease:[0.22,1,0.36,1]}}
+            style={{ background:"var(--surface)", border:`1px solid ${svc.accent}30`,
+              borderRadius:"20px", overflow:"hidden", position:"relative" }}>
+            <div style={{ position:"absolute", top:0, left:0, right:0, height:"3px",
+              background:`linear-gradient(90deg,transparent,${svc.accent},transparent)` }}/>
+            <div style={{ position:"absolute", top:-60, right:-60, width:"250px", height:"250px",
+              background:`radial-gradient(circle,${svc.accent}0A,transparent 70%)`, pointerEvents:"none" }}/>
+
+            <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:"0" }}>
+              {/* Left */}
+              <div style={{ padding:"40px 36px", borderRight:"1px solid var(--border)" }}>
+                <div style={{ display:"flex", alignItems:"center", gap:"12px", marginBottom:"18px" }}>
+                  <div style={{ width:"48px", height:"48px", borderRadius:"12px",
+                    background:`${svc.accent}18`, border:`1px solid ${svc.accent}30`,
+                    display:"flex", alignItems:"center", justifyContent:"center",
+                    fontSize:"22px", color:svc.accent }}>{svc.icon}</div>
+                  <div>
+                    <div style={{ fontSize:"10px", color:svc.accent, fontFamily:"var(--mono)",
+                      letterSpacing:"0.1em", textTransform:"uppercase", marginBottom:"2px" }}>{svc.tag}</div>
+                    <h3 style={{ fontSize:"18px", fontWeight:800, color:"#fff",
+                      letterSpacing:"-0.02em" }}>{svc.title}</h3>
+                  </div>
+                </div>
+                <p style={{ fontSize:"14px", color:"var(--green)", fontFamily:"var(--mono)",
+                  marginBottom:"14px", letterSpacing:"0.01em" }}>{svc.headline}</p>
+                <p style={{ fontSize:"13px", color:"var(--muted2)", lineHeight:1.8,
+                  marginBottom:"24px" }}>{svc.desc}</p>
+
+                {/* Stats */}
+                <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:"12px",
+                  marginBottom:"24px" }}>
+                  {[svc.stat1, svc.stat2].map(s => (
+                    <div key={s.label} style={{ background:"var(--srf2)", borderRadius:"10px",
+                      padding:"14px 16px", border:`1px solid ${svc.accent}18` }}>
+                      <div style={{ fontFamily:"var(--mono)", fontSize:"20px", fontWeight:900,
+                        color:svc.accent, letterSpacing:"-0.04em" }}>{s.val}</div>
+                      <div style={{ fontSize:"11px", color:"var(--muted)", marginTop:"3px" }}>{s.label}</div>
+                    </div>
+                  ))}
+                </div>
+
+                <div style={{ display:"flex", gap:"10px" }}>
+                  <a href="/demo" style={{ display:"inline-flex", alignItems:"center", gap:"8px",
+                    padding:"10px 20px", background:`rgba(0,255,148,0.08)`,
+                    border:"1px solid rgba(0,255,148,0.3)", borderRadius:"8px",
+                    color:"#fff", fontSize:"13px", fontWeight:600, textDecoration:"none" }}>
+                    Get a quote →
+                  </a>
+                  <div style={{ fontSize:"11px", color:"var(--muted)", fontFamily:"var(--mono)",
+                    display:"flex", alignItems:"center", padding:"0 12px",
+                    background:"var(--srf2)", borderRadius:"8px",
+                    border:"1px solid var(--border)" }}>👥 {svc.usedBy}</div>
+                </div>
+              </div>
+
+              {/* Right */}
+              <div style={{ padding:"40px 36px" }}>
+                <div style={{ marginBottom:"28px" }}>
+                  <div style={{ fontSize:"11px", color:"var(--muted)", fontFamily:"var(--mono)",
+                    letterSpacing:"0.1em", textTransform:"uppercase", marginBottom:"14px" }}>
+                    Core Deliverables
+                  </div>
+                  {svc.deliverables.map((d,i) => (
+                    <motion.div key={d} initial={{opacity:0,x:10}} animate={{opacity:1,x:0}}
+                      transition={{delay:i*0.07,duration:0.4}}
+                      style={{ display:"flex", alignItems:"center", gap:"12px",
+                        padding:"11px 14px", background:"var(--srf2)", borderRadius:"8px",
+                        border:"1px solid var(--border)", marginBottom:"8px",
+                        borderLeft:`2px solid ${svc.accent}55` }}>
+                      <div style={{ width:"5px", height:"5px", borderRadius:"50%",
+                        background:svc.accent, flexShrink:0 }}/>
+                      <span style={{ fontSize:"13px", color:"var(--muted2)" }}>{d}</span>
+                    </motion.div>
+                  ))}
+                </div>
+                <div>
+                  <div style={{ fontSize:"11px", color:"var(--muted)", fontFamily:"var(--mono)",
+                    letterSpacing:"0.1em", textTransform:"uppercase", marginBottom:"14px" }}>
+                    How We Deliver
+                  </div>
+                  {svc.model.map((m,i) => (
+                    <div key={m} style={{ display:"flex", alignItems:"center", gap:"10px",
+                      marginBottom:"10px" }}>
+                      <span style={{ color:svc.accent, fontSize:"12px", flexShrink:0 }}>✓</span>
+                      <span style={{ fontSize:"13px", color:"var(--muted2)" }}>{m}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </AnimatePresence>
+
+        {/* Bottom value props */}
+        <motion.div initial={{opacity:0,y:16}} animate={inView?{opacity:1,y:0}:{}}
+          transition={{delay:0.4,duration:0.6}}
+          style={{ display:"grid", gridTemplateColumns:"repeat(3,1fr)", gap:"16px", marginTop:"24px" }}>
+          {[
+            { icon:"⚡", title:"No Layered Teams",   desc:"Senior SMEs + AI. No junior bandwidth. No quality dilution.",       accent:"var(--green)"  },
+            { icon:"🛡️", title:"No Execution Delays", desc:"2-week sprint model with non-negotiable timeline discipline.",       accent:"var(--accent)" },
+            { icon:"✓",  title:"No Quality Trade-offs",desc:"Audit-ready, regulator-aligned outputs. First-time acceptance.",   accent:"var(--violet)" },
+          ].map(v => (
+            <div key={v.title} style={{ background:"var(--surface)", border:"1px solid var(--border)",
+              borderRadius:"12px", padding:"22px 20px", position:"relative", overflow:"hidden" }}>
+              <div style={{ position:"absolute", top:0, left:0, right:0, height:"2px",
+                background:`linear-gradient(90deg,transparent,${v.accent}44,transparent)` }}/>
+              <div style={{ fontSize:"22px", marginBottom:"10px" }}>{v.icon}</div>
+              <div style={{ fontSize:"14px", fontWeight:700, color:"#fff", marginBottom:"6px" }}>{v.title}</div>
+              <div style={{ fontSize:"12px", color:"var(--muted2)", lineHeight:1.6 }}>{v.desc}</div>
+            </div>
+          ))}
+        </motion.div>
+      </div>
+    </section>
+  );
+};
+
 // ─── APP ROOT ─────────────────────────────────────────────────────────────────
 export default function ProtocolIQWebsite() {
   return (
@@ -1425,6 +1679,8 @@ export default function ProtocolIQWebsite() {
         <WhyKnavis />
         <Divider />
         <MultiAgent />
+        <Divider />
+        <Services />
         <Divider />
         <FAQ />
         <BookDemo />

@@ -45,3 +45,132 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
 a[href="/demo"], a[href="#demo"] {
   transition: box-shadow 0.25s, transform 0.25s;
 }
+
+/* ── MOBILE RESPONSIVENESS ─────────────────────────────────────────── */
+@media (max-width: 768px) {
+
+  /* Navbar */
+  nav > div > div:nth-child(2) { display: none !important; }  /* hide nav links */
+  nav { padding: 0 16px !important; }
+
+  /* Hero */
+  section[style*="minHeight"] {
+    padding: 100px 16px 60px !important;
+  }
+
+  /* All 2-column grids → single column */
+  div[style*="gridTemplateColumns:\"1fr 1fr\""],
+  div[style*="grid-template-columns: 1fr 1fr"],
+  div[style*="gridTemplateColumns:\"240px 1fr\""],
+  div[style*="gridTemplateColumns:\"200px 1fr\""],
+  div[style*="gridTemplateColumns:\"220px 1fr\""],
+  div[style*="gridTemplateColumns:\"300px 1fr\""],
+  div[style*="gridTemplateColumns:\"1fr 420px\""],
+  div[style*="gridTemplateColumns:\"1fr 500px\""],
+  div[style*="gridTemplateColumns:\"2fr 1fr\""] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* 3-column grids → single column on mobile */
+  div[style*="gridTemplateColumns:\"repeat(3,1fr)\""],
+  div[style*="repeat(3,1fr)"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* auto-fill grids — already responsive, but ensure min 1 col */
+  div[style*="minmax(280px"] { grid-template-columns: 1fr !important; }
+  div[style*="minmax(300px"] { grid-template-columns: 1fr !important; }
+  div[style*="minmax(320px"] { grid-template-columns: 1fr !important; }
+  div[style*="minmax(340px"] { grid-template-columns: 1fr !important; }
+
+  /* Sections — reduce horizontal padding */
+  section { padding-left: 16px !important; padding-right: 16px !important; }
+
+  /* Hero headline */
+  h1 { font-size: clamp(24px,7vw,36px) !important; }
+
+  /* Section headings */
+  h2 { font-size: clamp(18px,5.5vw,28px) !important; }
+
+  /* Footer grid */
+  footer > div > div:first-child {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Ticker — faster on mobile */
+  div[style*="ticker"] { animation-duration: 16s !important; }
+
+  /* Hide large bg text decorations */
+  div[style*="font-size:\"260px\""] { display: none !important; }
+  div[style*="fontSize:\"200px\""]  { display: none !important; }
+
+  /* Reduce section padding */
+  section[style*="padding:\"120px"] {
+    padding-top: 64px !important;
+    padding-bottom: 64px !important;
+  }
+  section[style*="padding:\"100px"] {
+    padding-top: 56px !important;
+    padding-bottom: 56px !important;
+  }
+
+  /* Stat strips — 2 columns on mobile */
+  div[style*="gridTemplateColumns:\"repeat(4,1fr)\""],
+  div[style*="repeat(4,1fr)"] {
+    grid-template-columns: 1fr 1fr !important;
+  }
+  div[style*="gridTemplateColumns:\"repeat(auto-fit"] {
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  /* Remove border-right on stat cells when in 2-col */
+  div[style*="borderRight"] { border-right: none !important; border-bottom: 1px solid var(--border) !important; }
+
+  /* CTA buttons — stack on mobile */
+  div[style*="display:\"flex\""][style*="gap:\"14px\""] {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+  div[style*="display:\"flex\""][style*="gap:\"14px\""] > a,
+  div[style*="display:\"flex\""][style*="gap:\"14px\""] > button {
+    text-align: center !important;
+    justify-content: center !important;
+  }
+
+  /* Form grids → single column */
+  div[style*="gridTemplateColumns:\"1fr 1fr\""] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Pipeline flow — wrap */
+  div[style*="justifyContent:\"center\""][style*="gap:\"6px\""] {
+    justify-content: flex-start !important;
+    overflow-x: auto !important;
+  }
+
+  /* Navbar CTA buttons */
+  nav div[style*="display:\"flex\""][style*="gap:\"10px\""] {
+    gap: 6px !important;
+  }
+  nav a[style*="padding:\"9px 22px\""] {
+    padding: 7px 14px !important;
+    font-size: 12px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Extra small — phones */
+  h1 { font-size: 22px !important; }
+  h2 { font-size: 18px !important; }
+  h3 { font-size: 15px !important; }
+
+  section {
+    padding-left: 14px !important;
+    padding-right: 14px !important;
+  }
+
+  /* Stat strips — single col on small phones */
+  div[style*="gridTemplateColumns:\"repeat(4,1fr)\""] {
+    grid-template-columns: 1fr 1fr !important;
+  }
+}
