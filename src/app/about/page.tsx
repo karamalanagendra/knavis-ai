@@ -60,14 +60,8 @@ const Navbar = () => {
         borderBottom: scrolled||menuOpen ? "1px solid var(--border)" : "1px solid transparent",
         transition:"all 0.3s" }}>
         <div style={{ maxWidth:"1200px", margin:"0 auto", display:"flex", alignItems:"center", justifyContent:"space-between", height:"64px" }}>
-          <a href="/" style={{ display:"flex", alignItems:"center", gap:"10px", textDecoration:"none" }}>
-            <div style={{ width:"32px", height:"32px", borderRadius:"8px", background:"linear-gradient(135deg,#00D4FF,#7C3AED)", display:"flex", alignItems:"center", justifyContent:"center" }}>
-              <span style={{ fontFamily:"monospace", fontSize:"13px", fontWeight:700, color:"#fff" }}>P</span>
-            </div>
-            <div>
-              <div style={{ fontSize:"15px", fontWeight:800, color:"#fff" }}>Protocol<span style={{color:"var(--accent)"}}>IQ</span></div>
-              <div style={{ fontSize:"9px", color:"var(--muted)", letterSpacing:"0.12em", textTransform:"uppercase" }}>knavis-ai.com</div>
-            </div>
+          <a href="/" style={{ display:"flex", alignItems:"center", textDecoration:"none" }}>
+            <img src="/knavis-logo.png" alt="KNavis Systems" style={{ height:"44px", width:"auto", display:"block" }}/>
           </a>
           <div className="desktop-nav" style={{ display:"flex", gap:"2px" }}>
             {links.map(l => (

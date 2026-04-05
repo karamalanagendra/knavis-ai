@@ -136,20 +136,12 @@ const Navbar = () => {
           alignItems:"center", justifyContent:"space-between", height:"64px" }}>
 
           {/* Logo */}
-          <a href="/" style={{ display:"flex", alignItems:"center", gap:"10px", textDecoration:"none" }}>
-            <div style={{ width:"32px", height:"32px", borderRadius:"8px",
-              background:"linear-gradient(135deg,#00D4FF,#7C3AED)",
-              display:"flex", alignItems:"center", justifyContent:"center",
-              boxShadow:"0 0 12px rgba(0,212,255,0.2)", flexShrink:0 }}>
-              <span style={{ fontFamily:"var(--mono)", fontSize:"13px", fontWeight:700, color:"#fff" }}>P</span>
-            </div>
-            <div>
-              <div style={{ fontSize:"15px", fontWeight:800, letterSpacing:"-0.03em", color:"#fff" }}>
-                Protocol<span style={{ color:"var(--accent)" }}>IQ</span>
-              </div>
-              <div style={{ fontSize:"9px", color:"var(--muted)", letterSpacing:"0.12em",
-                textTransform:"uppercase", fontFamily:"var(--mono)", lineHeight:1 }}>knavis-ai.com</div>
-            </div>
+          <a href="/" style={{ display:"flex", alignItems:"center", textDecoration:"none" }}>
+            <img
+              src="/knavis-logo.png"
+              alt="KNavis Systems"
+              style={{ height:"44px", width:"auto", display:"block" }}
+            />
           </a>
 
           {/* Desktop links */}
