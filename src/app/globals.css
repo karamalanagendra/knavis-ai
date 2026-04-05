@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=DM+Serif+Display:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+:root {
+  --bg:#06060F; --bg2:#0B0B1A; --surface:#0E0E1C; --srf2:#131325;
+  --border:rgba(255,255,255,0.065); --text:#EEEEFF;
+  --muted:#64648A; --muted2:#9090B0;
+  --accent:#00D4FF; --violet:#7C3AED; --green:#00FF94; --orange:#FF8A3D; --red:#FF5E7A;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+::selection{background:rgba(0,212,255,0.2);}
+::-webkit-scrollbar{width:3px;}
+::-webkit-scrollbar-thumb{background:var(--violet);border-radius:2px;}
+@keyframes ticker{to{transform:translateX(-50%);}}
+@keyframes gridpulse{0%,100%{opacity:0.04}50%{opacity:0.09}}
+@keyframes scan{0%{top:0%;opacity:0}5%{opacity:1}95%{opacity:1}100%{top:100%;opacity:0}}
+@keyframes shimmer{from{background-position:-300% center}to{background-position:300% center}}
+@keyframes glow-pulse{0%,100%{opacity:0.5}50%{opacity:1}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes check-in{0%{transform:scale(0) rotate(-45deg);opacity:0}60%{transform:scale(1.2) rotate(5deg)}100%{transform:scale(1) rotate(0deg);opacity:1}}
+@keyframes progress{from{width:0%}to{width:100%}}
+.shimmer-text{background:linear-gradient(90deg,#00D4FF,#7C3AED,#00FF94,#00D4FF);background-size:300% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmer 4s linear infinite;}
+.hover-lift{transition:all 0.3s cubic-bezier(0.22,1,0.36,1);}
+.hover-lift:hover{transform:translateY(-4px);}
+.card-hover{transition:all 0.3s cubic-bezier(0.22,1,0.36,1);cursor:pointer;}
+.card-hover:hover{transform:translateY(-4px);}
+input[type=range]{-webkit-appearance:none;width:100%;height:4px;background:var(--srf2);border-radius:2px;outline:none;}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:linear-gradient(135deg,#00D4FF,#7C3AED);cursor:pointer;box-shadow:0 0 12px rgba(0,212,255,0.5);}
+
+/* ── Green as primary accent ── */
+.shimmer-text {
+  background: linear-gradient(90deg, #00FF94, #00D4FF, #7C3AED, #00FF94) !important;
+  background-size: 300% auto !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  animation: shimmer 4s linear infinite !important;
+}
+
+/* Primary CTA green glow */
+a[href="/demo"], a[href="#demo"] {
+  transition: box-shadow 0.25s, transform 0.25s;
+}
