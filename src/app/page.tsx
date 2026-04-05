@@ -117,13 +117,11 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", h);
   }, []);
   const links = [
-    { label:"Home",              href:"#home"       },
-    { label:"Platform",          href:"#platform"   },
-    { label:"Flagship Solutions",href:"#flagship"   },
-    { label:"Services",          href:"#services"   },
-    { label:"Multi-Agent",       href:"#multiagent" },
-    { label:"Why KNavis",        href:"#why"        },
-    { label:"About",             href:"/about"      },
+    { label:"Platform",  href:"#platform"   },
+    { label:"Solutions", href:"#flagship"   },
+    { label:"Services",  href:"#services"   },
+    { label:"Agents",    href:"#multiagent" },
+    { label:"About Us",  href:"/about"      },
   ];
   return (
     <>
@@ -206,31 +204,6 @@ const Navbar = () => {
             <div style={{ marginTop:"16px" }}>
               <a href="#demo" onClick={() => setMenuOpen(false)}
                 style={{ display:"block", textAlign:"center", padding:"13px",
-                  background:"rgba(0,255,148,0.08)", border:"1px solid rgba(0,255,148,0.3)",
-                  borderRadius:"8px", color:"#fff", fontSize:"14px",
-                  fontWeight:600, textDecoration:"none" }}>
-                Book a Demo →
-              </a>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-            exit={{opacity:0,y:-10}} transition={{duration:0.25}}
-            style={{ position:"fixed", top:"64px", left:0, right:0, zIndex:99,
-              background:"rgba(6,6,15,0.98)", backdropFilter:"blur(20px)",
-              borderBottom:"1px solid var(--border)", padding:"16px 20px 24px" }}>
-            {links.map(l => (
-              <a key={l} href={`#${l.toLowerCase()}`}
-                onClick={() => setMenuOpen(false)}
-                style={{ display:"block", padding:"12px 8px", color:"var(--muted2)",
-                  fontSize:"16px", fontWeight:500, textDecoration:"none",
-                  borderBottom:"1px solid var(--border)" }}>
-                {l}
-              </a>
-            ))}
-            <div style={{ marginTop:"16px", display:"flex", gap:"10px" }}>
-              <a href="#demo" onClick={() => setMenuOpen(false)}
-                style={{ flex:1, textAlign:"center", padding:"12px",
                   background:"rgba(0,255,148,0.08)", border:"1px solid rgba(0,255,148,0.3)",
                   borderRadius:"8px", color:"#fff", fontSize:"14px",
                   fontWeight:600, textDecoration:"none" }}>
